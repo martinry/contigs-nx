@@ -2,7 +2,6 @@
 
 total_assembly_length = 0
 
-fasta_file = input('FASTA file name: ')
 threshold = input('Specify threshold N50 (50) or N90 (90): ')
 threshold = (threshold*0.01)
 
@@ -17,11 +16,11 @@ def read_fasta(fp):
             seq.append(line)
     if name: yield (name, ''.join(seq))
 
-with open(fasta_file) as fp:
+with open('filename.unpadded.fasta') as fp:
     for name, seq in read_fasta(fp):
         total_assembly_length += len(seq)
 
-with open(fasta_file) as fp:
+with open('filename.fasta') as fp:
     x = [(len(seq), name, seq) for name, seq in read_fasta(fp)]
     x = sorted(x, reverse=True)
     count = 0
